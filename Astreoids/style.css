@@ -1,0 +1,120 @@
+/* Genel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #1a1a2e;
+    color: #fff;
+}
+
+/* Navbar Stilleri */
+.navbar {
+    background-color: #16213e;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00ff9d;
+}
+
+.search-container input {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    width: 300px;
+    background-color: #0f3460;
+    color: white;
+}
+
+.controls {
+    margin: 2rem;
+    padding: 1rem;
+    background-color: #16213e;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+}
+
+.filter-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-section select,
+.filter-section input,
+.filter-section button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid #0f3460;
+    background-color: #0f3460;
+    color: white;
+}
+
+.table-container {
+    margin: 2rem;
+    overflow-x: auto;
+    background-color: #16213e;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #0f3460;
+}
+
+th {
+    background-color: #0f3460;
+    color: #00ff9d;
+}
+
+tr:hover {
+    background-color: #1f3b6f;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #0f3460;
+    color: white;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #00ff9d;
+    color: #16213e;
+}
+
+.reset-btn {
+    background-color: #e94560;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+} 

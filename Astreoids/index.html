@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroit Veritabanı</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Asteroit Veritabanı</div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Asteroit ara...">
+        </div>
+    </nav>
+
+    <main>
+        <div class="controls">
+            <div class="filter-section">
+                <select id="filterColumn">
+                    <option value="name">İsim</option>
+                    <option value="H">Mutlak Parlaklık</option>
+                    <option value="e">Eksantrisite</option>
+                    <option value="epoch">Tarih</option>
+                </select>
+                <input type="text" id="filterValue" placeholder="Filtre değeri...">
+                <button onclick="applyFilter()">Filtrele</button>
+            </div>
+            <button onclick="resetFilters()" class="reset-btn">Filtreleri Sıfırla</button>
+        </div>
+
+        <div class="table-container">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>İsim</th>
+                        <th>Mutlak Parlaklık (H)</th>
+                        <th>Ortalama Anomali (M)</th>
+                        <th>Eğim (°)</th>
+                        <th>Eksantrisite (e)</th>
+                        <th>Yarı-Büyük Eksen (a)</th>
+                        <th>Epoch</th>
+                        <th>Detaylar</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Veriler JS ile doldurulacak -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 

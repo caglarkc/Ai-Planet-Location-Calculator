@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroid Detayları</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .detail-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #16213e;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-button {
+            padding: 0.5rem 1rem;
+            background-color: #0f3460;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #00ff9d;
+            color: #16213e;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .detail-card {
+            background-color: #0f3460;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .detail-card h3 {
+            color: #00ff9d;
+            margin-bottom: 1rem;
+        }
+
+        .orbit-visualization {
+            width: 100%;
+            height: 300px;
+            background-color: #0f3460;
+            border-radius: 8px;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Asteroid Detayları</div>
+        <a href="index.html" class="back-button">Ana Sayfaya Dön</a>
+    </nav>
+
+    <div class="detail-container">
+        <div class="detail-header">
+            <h1 id="asteroidName">Asteroid Yükleniyor...</h1>
+            <a href="index.html" class="back-button">← Geri</a>
+        </div>
+
+        <div class="detail-grid">
+            <div class="detail-card">
+                <h3>Temel Bilgiler</h3>
+                <p><strong>İsim:</strong> <span id="name"></span></p>
+                <p><strong>Mutlak Parlaklık (H):</strong> <span id="H"></span></p>
+                <p><strong>Epoch:</strong> <span id="epoch"></span></p>
+            </div>
+
+            <div class="detail-card">
+                <h3>Yörünge Parametreleri</h3>
+                <p><strong>Eğim:</strong> <span id="inclination"></span>°</p>
+                <p><strong>Eksantrisite:</strong> <span id="eccentricity"></span></p>
+                <p><strong>Yarı-Büyük Eksen:</strong> <span id="semiMajorAxis"></span> AU</p>
+                <p><strong>Ortalama Hareket (n):</strong> <span id="meanMotion"></span></p>
+            </div>
+
+            <div class="detail-card">
+                <h3>Diğer Parametreler</h3>
+                <p><strong>Perihel:</strong> <span id="perihelion"></span>°</p>
+                <p><strong>Düğüm:</strong> <span id="node"></span>°</p>
+                <p><strong>Ortalama Anomali:</strong> <span id="meanAnomaly"></span>°</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadAsteroidDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+
+            try {
+                const response = await fetch('new_data.csv');
+                const data = await response.text();
+                const lines = data.split('\n');
+                const headers = lines[0].split(',');
+                
+                // İsme göre asteroid'i bul
+                const asteroidData = lines.slice(1).find(line => line.includes(name));
+                
+                if (asteroidData) {
+                    const values = asteroidData.split(',');
+                    
+                    document.getElementById('asteroidName').textContent = values[11];
+                    document.getElementById('name').textContent = values[11];
+                    document.getElementById('H').textContent = values[0];
+                    document.getElementById('epoch').textContent = values[12];
+                    document.getElementById('inclination').textContent = parseFloat(values[4]).toFixed(2);
+                    document.getElementById('eccentricity').textContent = parseFloat(values[5]).toFixed(4);
+                    document.getElementById('semiMajorAxis').textContent = parseFloat(values[7]).toFixed(2);
+                    document.getElementById('meanMotion').textContent = parseFloat(values[6]).toFixed(8);
+                    document.getElementById('perihelion').textContent = parseFloat(values[2]).toFixed(2);
+                    document.getElementById('node').textContent = parseFloat(values[3]).toFixed(2);
+                    document.getElementById('meanAnomaly').textContent = parseFloat(values[1]).toFixed(2);
+                } else {
+                    document.getElementById('asteroidName').textContent = 'Asteroid bulunamadı';
+                }
+            } catch (error) {
+                console.error('Veri yükleme hatası:', error);
+                document.getElementById('asteroidName').textContent = 'Veri yükleme hatası';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadAsteroidDetails);
+    </script>
+</body>
+</html> 
